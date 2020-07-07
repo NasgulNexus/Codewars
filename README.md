@@ -1,1 +1,3 @@
 # Codewars
+
+programming language: JavaScript
