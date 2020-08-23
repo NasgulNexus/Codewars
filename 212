@@ -1,12 +1,8 @@
-from itertools import chain
 input_intervals = int(input())
 points = []
-intervals =[]
-inputI=input_intervals
 while input_intervals > 0:
     input_intervals -= 1
     interval_start, interval_end = input().split()
-    intervals.append([int(interval_start),int(interval_end)] )
     interval_start = int(interval_start)
     interval_end = int(interval_end)
     points.append([interval_start, -1]) 
@@ -18,14 +14,13 @@ maxvac = 0
 maxvacnum = 0
 maxvactime = 0
 count = 0
-sum = len(set(chain.from_iterable(range(*i) for i in intervals)))
-
 for p in points:
     if p[1] < 0:  
         count += 1
         if count > maxvac:
             maxvac = count
-            maxvacnum = 1
+            if maxvacnum < 1:
+              maxvacnum = 1
             maxstart = p[0]
         elif count == maxvac:
             maxvacnum += 1
@@ -35,9 +30,7 @@ for p in points:
             maxvactime += p[0] - maxstart + 1
         count -=1
 
-if maxvacnum == inputI:
-  sum+=maxvacnum
-else:
-  sum-=1
+print(maxvacnum, maxvactime)
 
-print (maxvacnum, sum)
+
+ 
